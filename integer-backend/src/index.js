@@ -13,9 +13,9 @@ app.get("/hello", (_req, res) => {
   res.send("Hello Node.js!");
 });
 
+// membuat route (dengan objek Router)
 const router = express.Router();
 
-// membuat route (dengan objek Router)
 router.use("/galaxies", galaxiesRouter);
 router.use("/planets", planetsRouter);
 

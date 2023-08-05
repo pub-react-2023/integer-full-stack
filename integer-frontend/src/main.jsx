@@ -21,7 +21,7 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: "/planet/:id",
+        path: "/planets/:id",
         element: <Planet />,
       },
     ],

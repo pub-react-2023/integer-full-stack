@@ -17,7 +17,7 @@ export default function Home() {
         <div key={planet.id}>
           <h3>{planet.name}</h3>
           <p>{planet.diameter}</p>
-          <Link to={`/planet/${planet.id}`}>
+          <Link to={`/planets/${planet.id}`}>
             <button>Detail</button>
           </Link>
         </div>
