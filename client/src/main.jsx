@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
 import Planet from "./pages/Planet.jsx";
+import EditPlanet from "./pages/EditPlanet.jsx";
 
 const router = createBrowserRouter([
   {
@@ -13,16 +14,20 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "/",
-        element: <Home />,
-      },
-      {
         path: "/login",
         element: <Login />,
       },
       {
-        path: "/planets/:id",
+        path: "/", // Daftar planet
+        element: <Home />,
+      },
+      {
+        path: "/planets/:id", // Detail planet
         element: <Planet />,
+      },
+      {
+        path: "/planets/:id/edit", // Edit planet
+        element: <EditPlanet />,
       },
     ],
   },

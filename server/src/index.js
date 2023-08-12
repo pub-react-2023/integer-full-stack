@@ -6,7 +6,9 @@ import planetsRouter from "./routes/planets.js";
 
 export const app = express();
 
+// middlewares
 app.use(cors({ origin: "http://localhost:5173" }));
+app.use(express.json()); // membaca body
 
 // membuat route (langsung)
 app.get("/hello", (_req, res) => {

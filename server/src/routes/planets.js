@@ -57,9 +57,11 @@ const planets = [
   },
 ];
 
+let id = planets.length;
+
 const router = express.Router();
 
-// semua
+// tampilkan semua
 router.get("/", (_req, res) => {
   res.json(
     planets.map((planet) => {
@@ -68,7 +70,7 @@ router.get("/", (_req, res) => {
   );
 });
 
-// satu berdasarkan ID
+// tampilkan satu berdasarkan ID
 router.get("/:id", (req, res) => {
   const planet = planets.find((p) => p.id == req.params.id);
   if (planet) {
@@ -78,5 +80,47 @@ router.get("/:id", (req, res) => {
     res.send("Planet tidak ditemukan.");
   }
 });
+
+// buat
+router.post("/", (req, res) => {
+  try {
+    planets.push({ id: ++id, ...req.body });
+    res.send("Planet berhasil disimpan.");
+  } catch (error) {
+    res.status(500);
+    res.send(error);
+  }
+});
+
+// edit
+router.put("/:id", (req, res) => {
+  try {
+    planets.forEach((planet) => {
+      if (planet.id == req.params.id) {
+        for (const property in req.body) {
+          planet[property] = req.body[property];
+        }
+      }
+    });
+    res.send("Planet berhasil disimpan.");
+  } catch (error) {
+    res.status(500);
+    res.send(error);
+  }
+});
+
+// hapus berdasarkan ID
+router.delete("/:id", (req, res) => {
+  try {
+    const index = planets.findIndex((p) => p.id == req.params.id);
+    planets.splice(index, 1);
+    res.send("Planet berhasil dihapus.");
+  } catch (error) {
+    res.status(500);
+    res.send(error);
+  }
+});
+
+// hapus semua
 
 export default router;
